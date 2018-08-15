@@ -43,10 +43,11 @@
 
                 var firstName = $("#firstName").val();
                 var lastName = $("#lastName").val();
-                var email = $("#email").val();
+                var longitude = $("#longitude").val();
+                var latitude = $("#latitude").val();    
                 var phone = $("#phone").val();
 
-                if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || phone.length == 0) {
+                if (firstName.length == 0 || lastName.length == 0 || latitude.length == 0 || phone.length == 0 || longitude.length == 0  ) {
                     errorMessage.text("All of the fields are required.");
                     error.show();
                 }
@@ -57,7 +58,8 @@
                         data: JSON.stringify({
                             firstName: firstName,
                             lastName: lastName,
-                            email: email,
+                            longitude: longitude,
+                            latitude: latitude,                            
                             phone: phone
                         }),
                         contentType: "application/json; charset=utf-8",
@@ -65,7 +67,8 @@
                         success: function (data) {
                             $("#firstName").val("");
                             $("#lastName").val("");
-                            $("#email").val("");
+                            $("#longitude").val("");
+                            $("#latitude").val("");
                             $("#phone").val("");
                             $("#messageMessage").text("Record updated!");
                             $("#message").show();
@@ -97,29 +100,31 @@
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Please enter your first name">
-                    <input id="firstName" class="input100" type="text" name="name" placeholder="first Name">
+                    <input id="firstName" class="input100" type="text" name="name" placeholder="Account Name">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Please enter your lastName name">
-                    <input id="lastName" class="input100" type="text" name="name" placeholder="first Name">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate="Please enter email: e@a.x">
-                    <input id="email" class="input100" type="text" name="email" placeholder="Email">
+                    <input id="lastName" class="input100" type="text" name="name" placeholder="Website">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Please enter your phone">
-                    <input id="phone" class="input100" type="tel" name="phone" placeholder="Phone">
+                        <input id="phone" class="input100" type="tel" name="phone" placeholder="Phone">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Please enter a number">
+                    <input id="latitude" class="input100" type="text" name="Location" placeholder="Location Latitude">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Please enter your message">
-                    <textarea class="input100" name="message" placeholder="Your Message"></textarea>
-                    <span class="focus-input100"></span>
-                </div>
+                <div class="wrap-input100 validate-input" data-validate="Please enter a number">
+                        <input id="longitude" class="input100" type="text" name="Location" placeholder="Location Longitude">
+                        <span class="focus-input100"></span>
+                 </div>
+
+
 
                 <div class="container-contact100-form-btn">
 

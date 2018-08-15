@@ -14,12 +14,12 @@ app.post('/update', function(req, res) {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'UPDATE salesforce.Contact SET Phone = $1, MobilePhone = $1, OtherPhone = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
-            [req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+            'UPDATE salesforce.Account SET latitude = $1, longitude = $2 WHERE LOWER(Name) = LOWER($3) AND LOWER(Phone) = LOWER($4) AND LOWER(Website) = LOWER($4)',
+            [req.body.latitude.trim(), req.body.longitude.trim(), req.body.firstName.trim(), req.body.phone.trim(), req.body.lastName.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Contact (Phone, MobilePhone, OtherPhone, FirstName, LastName, Email) VALUES ($1, $2, $3, $4, $5, $6)',
-                  [req.body.phone.trim(), req.body.phone.trim(), req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
+                  conn.query('INSERT INTO salesforce.Account (latitude, longitude, Name, Phone, Website) VALUES ($1, $2, $3, $4, $5, $6)',
+                  [req.body.latitude.trim(), req.body.longitude.trim(), req.body.firstName.trim(), req.body.phone.trim(), req.body.lastName.trim()],
                   function(err, result) {
                     done();
                     if (err) {
