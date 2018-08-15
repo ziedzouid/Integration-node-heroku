@@ -14,11 +14,11 @@ app.post('/update', function(req, res) {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'UPDATE salesforce.Account SET latitude = $1, longitude = $2 WHERE LOWER(Name) = LOWER($3) AND LOWER(Phone) = LOWER($4) AND LOWER(Website) = LOWER($4)',
+            'UPDATE salesforce.Account SET Location__Latitude__s = $1, Location__Longitude__s = $2 WHERE LOWER(Name) = LOWER($3) AND LOWER(Phone) = LOWER($4) AND LOWER(Website) = LOWER($5)',
             [req.body.latitude.trim(), req.body.longitude.trim(), req.body.firstName.trim(), req.body.phone.trim(), req.body.lastName.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Account (latitude, longitude, Name, Phone, Website) VALUES ($1, $2, $3, $4, $5, $6)',
+                  conn.query('INSERT INTO salesforce.Account (Location__Latitude__s, Location__Longitude__s, Name, Phone, Website) VALUES ($1, $2, $3, $4, $5)',
                   [req.body.latitude.trim(), req.body.longitude.trim(), req.body.firstName.trim(), req.body.phone.trim(), req.body.lastName.trim()],
                   function(err, result) {
                     done();
